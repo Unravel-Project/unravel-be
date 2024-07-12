@@ -46,4 +46,4 @@ jobs:
           port: 22
           script: |
             sudo cp -R ~/unravel/api/* /root/my-docker-compose/api-unravel-mlg
-            sudo sh -c "cd /root/my-docker-compose/api-unravel-mlg/; docker compose up"
+            sudo sh -c "cd /root/my-docker-compose/api-unravel-mlg/; docker compose up -d"
