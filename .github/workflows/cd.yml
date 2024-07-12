@@ -49,5 +49,5 @@ jobs:
           port: 22
           script: |
             sudo mv ~/unravel-api/target/api-0.0.1-SNAPSHOT.jar /root/my-docker-compose/api-unravel-mlg
-            sudo sh -c "cd /root/my-docker-compose/api-unravel-mlg/; docker compose down; docker compose up -d"
+            sudo sh -c "cd /root/my-docker-compose/api-unravel-mlg/; docker compose down; docker image rm api-unravel-mlg-app; docker compose up -d"
             rm -R  ~/unravel-api/*
