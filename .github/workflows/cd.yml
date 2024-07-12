@@ -37,7 +37,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           source: ./target/*
           target: /home/rizal/unravel/api
-      - name: Change cfg file
+      - name: compose up
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -45,7 +45,5 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: 22
           script: |
-            sudo su
-            cp -R ~/unravel/api/* /root/my-docker-compose/api-unravel-mlg
-            cd /root/my-docker-compose/api-unravel-mlg/
-            docker compose up
+            sudo cp -R ~/unravel/api/* /root/my-docker-compose/api-unravel-mlg
+            sudo sh -c "cd /root/my-docker-compose/api-unravel-mlg/; docker compose up"
