@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: api-prod
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db_unravel_prod
+    username: postgres
+    password:
+  liquibase:
+    enabled: false
+    change-log: classpath:db/changelog-prod-master.yaml

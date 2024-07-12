@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: api-test
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db_unravel_test
+    username: postgres
+    password:
+  profiles:
+    active: test
+  liquibase:
+    enabled: false
+    change-log: classpath:db/changelog-test-master.yaml
+jwt_encoded_key: W3qnUHPEONoweapJ7+gm3b4Nw9gjJHbCCnrJRLp6XCM=

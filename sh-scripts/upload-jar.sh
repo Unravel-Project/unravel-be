@@ -1,0 +1,1 @@
+scp ./target/api-0.0.1-SNAPSHOT.jar root@193.203.162.231:/root/my-docker-compose/api-unravel-mlg
