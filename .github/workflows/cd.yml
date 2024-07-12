@@ -50,3 +50,4 @@ jobs:
           script: |
             sudo cp -R ~/unravel/api/* /root/my-docker-compose/api-unravel-mlg
             sudo sh -c "cd /root/my-docker-compose/api-unravel-mlg/; docker compose up -d"
+            sudo rm -R  ~/unravel/api/*
