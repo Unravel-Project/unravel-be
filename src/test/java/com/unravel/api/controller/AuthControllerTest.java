@@ -37,7 +37,7 @@ public class AuthControllerTest {
         loginRequest.setPassword("test");
 
         mockMvc.perform(
-                MockMvcRequestBuilders.post(ApiStaticData.API_BUSINESS_USER_PREFIX + "/auth/login")
+                MockMvcRequestBuilders.post(ApiStaticData.API_ADMIN_PREFIX + "/auth/login")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(loginRequest))
@@ -51,7 +51,7 @@ public class AuthControllerTest {
         loginRequest.setPassword("test1");
 
         mockMvc.perform(
-                MockMvcRequestBuilders.post(ApiStaticData.API_BUSINESS_USER_PREFIX + "/auth/login")
+                MockMvcRequestBuilders.post(ApiStaticData.API_ADMIN_PREFIX + "/auth/login")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(loginRequest))
@@ -64,10 +64,10 @@ public class AuthControllerTest {
 
     @Test
     void testGetBusinessUserProfile_OK() throws Exception {
-        String token = tokenUtil.getBusinessUserToken(1L, "test");
+        String token = tokenUtil.getAdminToken(1L, "test");
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get(ApiStaticData.API_BUSINESS_USER_PREFIX + "/auth/me")
+                MockMvcRequestBuilders.get(ApiStaticData.API_ADMIN_PREFIX + "/auth/me")
                         .header("X-API-TOKEN", token)
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk());
@@ -75,10 +75,10 @@ public class AuthControllerTest {
 
     @Test
     void testGetBusinessUserProfile_WrongEmail() throws Exception {
-        String token = tokenUtil.getBusinessUserToken(1L, "dev");
+        String token = tokenUtil.getAdminToken(1L, "dev");
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get(ApiStaticData.API_BUSINESS_USER_PREFIX + "/auth/me")
+                MockMvcRequestBuilders.get(ApiStaticData.API_ADMIN_PREFIX + "/auth/me")
                         .header("X-API-TOKEN", token)
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
@@ -87,7 +87,7 @@ public class AuthControllerTest {
     @Test
     void testGetBusinessUserProfile_EmptyToken() throws Exception {
         mockMvc.perform(
-                MockMvcRequestBuilders.get(ApiStaticData.API_BUSINESS_USER_PREFIX + "/auth/me")
+                MockMvcRequestBuilders.get(ApiStaticData.API_ADMIN_PREFIX + "/auth/me")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());
     }
@@ -97,7 +97,7 @@ public class AuthControllerTest {
         String token = "invalid_token";
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get(ApiStaticData.API_BUSINESS_USER_PREFIX + "/auth/me")
+                MockMvcRequestBuilders.get(ApiStaticData.API_ADMIN_PREFIX + "/auth/me")
                         .header("X-API-TOKEN", token)
                         .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isUnauthorized());

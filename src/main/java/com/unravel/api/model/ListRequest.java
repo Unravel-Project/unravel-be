@@ -1,5 +1,6 @@
 package com.unravel.api.model;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,12 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class WebResponse<T> {
+public class ListRequest {
 
-    private T data;
+    @NotNull
+    private Integer page;
 
-    private String errors;
+    @NotNull
+    private Integer size;
 
-    private PagingResponse paging;
-
+    private String search;
 }

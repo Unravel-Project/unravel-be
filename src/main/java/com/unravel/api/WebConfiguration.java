@@ -1,6 +1,6 @@
 package com.unravel.api;
 
-import com.unravel.api.resolver.BusinessUserArgumentResolver;
+import com.unravel.api.resolver.AdminArgumentResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -12,11 +12,11 @@ import java.util.List;
 public class WebConfiguration implements WebMvcConfigurer {
 
     @Autowired
-    private BusinessUserArgumentResolver businessUserArgumentResolver;
+    private AdminArgumentResolver adminArgumentResolver;
 
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         WebMvcConfigurer.super.addArgumentResolvers(resolvers);
-        resolvers.add(businessUserArgumentResolver);
+        resolvers.add(adminArgumentResolver);
     }
 
 }

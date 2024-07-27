@@ -1,8 +1,8 @@
 package com.unravel.api.controller.api;
 
-import com.unravel.api.entity.BusinessUser;
+import com.unravel.api.entity.Admin;
 import com.unravel.api.model.WebResponse;
-import com.unravel.api.model.auth.BusinessUserResponse;
+import com.unravel.api.model.auth.AdminResponse;
 import com.unravel.api.model.auth.LoginRequest;
 import com.unravel.api.util.ApiStaticData;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,17 +16,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 public interface AuthApi {
 
-    @Operation(description = "This API will generate token for business user. You will need the token for X-API-TOKEN header.")
+    @Operation(description = "This API will generate token for admin. You will need the token for X-API-TOKEN header.")
     @PostMapping(
-            path = ApiStaticData.API_BUSINESS_USER_PREFIX + "/auth/login",
+            path = ApiStaticData.API_ADMIN_PREFIX + "/auth/login",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    WebResponse<String> loginBusinessUser(@RequestBody LoginRequest loginRequest);
+    WebResponse<String> loginAdmin(@RequestBody LoginRequest loginRequest);
 
-    @Operation(description = "This API will display data of the business user who is currently logged in.")
+    @Operation(description = "This API will display data of the admin who is currently logged in.")
     @Parameter(
-            name = "businessUser",
+            name = "admin",
             hidden = true)
     @Parameter(
             name = "X-API-TOKEN",
@@ -34,9 +34,9 @@ public interface AuthApi {
             in = ParameterIn.HEADER,
             schema = @Schema(type = "string"))
     @GetMapping(
-            path = ApiStaticData.API_BUSINESS_USER_PREFIX + "/auth/me",
+            path = ApiStaticData.API_ADMIN_PREFIX + "/auth/me",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    WebResponse<BusinessUserResponse> getBusinessUserProfile(BusinessUser businessUser);
+    WebResponse<AdminResponse> getAdminProfile(Admin admin);
 
 }

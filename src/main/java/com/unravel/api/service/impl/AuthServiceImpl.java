@@ -1,9 +1,9 @@
 package com.unravel.api.service.impl;
 
-import com.unravel.api.entity.BusinessUser;
-import com.unravel.api.model.auth.BusinessUserResponse;
+import com.unravel.api.entity.Admin;
+import com.unravel.api.model.auth.AdminResponse;
 import com.unravel.api.model.auth.LoginRequest;
-import com.unravel.api.repository.BusinessUserRepository;
+import com.unravel.api.repository.AdminRepository;
 import com.unravel.api.security.BCrypt;
 import com.unravel.api.service.AuthService;
 import com.unravel.api.util.TokenUtil;
@@ -15,24 +15,24 @@ import org.springframework.web.server.ResponseStatusException;
 @Service
 public class AuthServiceImpl implements AuthService {
     @Autowired
-    private BusinessUserRepository businessUserRepository;
+    private AdminRepository adminRepository;
     @Autowired
     private TokenUtil tokenUtil;
 
-    public String businessUserLogin(LoginRequest loginRequest) {
-        BusinessUser businessUser = businessUserRepository.findFirstByEmail(loginRequest.getEmail())
+    public String adminLogin(LoginRequest loginRequest) {
+        Admin admin = adminRepository.findFirstByEmail(loginRequest.getEmail())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "EMAIL_DOES_NOT_EXIST"));
 
-        if (!BCrypt.checkpw(loginRequest.getPassword(), businessUser.getPasswd())) {
+        if (!BCrypt.checkpw(loginRequest.getPassword(), admin.getPasswd())) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "INVALID_PASSWORD");
         }
-        return tokenUtil.getBusinessUserToken(businessUser.getId(), businessUser.getEmail());
+        return tokenUtil.getAdminToken(admin.getId(), admin.getEmail());
     }
 
-    public BusinessUserResponse getProfile(String email) {
-        BusinessUser businessUser = businessUserRepository.findFirstByEmail(email)
+    public AdminResponse getProfile(String email) {
+        Admin admin = adminRepository.findFirstByEmail(email)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.toString()));
 
-        return BusinessUserResponse.builder().id(businessUser.getId()).email(businessUser.getEmail()).build();
+        return AdminResponse.builder().id(admin.getId()).name(admin.getName()).email(admin.getEmail()).build();
     }
 }

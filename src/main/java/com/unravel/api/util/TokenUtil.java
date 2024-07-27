@@ -25,13 +25,13 @@ public class TokenUtil {
         return new SecretKeySpec(decodedKey, 0, decodedKey.length, "HMACSHA256");
     }
 
-    public String getBusinessUserToken(Long id, String email) {
+    public String getAdminToken(Long id, String email) {
         SecretKey key = getSecretKey();
         Date expirationDate = new Date();
         expirationDate = DateUtils.addDays(expirationDate, 1);
         Map<String, Object> claims = new HashMap<>();
         claims.put("email", email);
-        return Jwts.builder().subject("BUSINESSUSER-" + id).claims(claims).expiration(expirationDate).signWith(key).compact();
+        return Jwts.builder().subject("ADMIN-" + id).claims(claims).expiration(expirationDate).signWith(key).compact();
     }
 
     public Claims verifyToken(String token) {

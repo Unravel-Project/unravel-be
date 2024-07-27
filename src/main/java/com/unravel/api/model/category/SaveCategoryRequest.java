@@ -1,5 +1,6 @@
-package com.unravel.api.model;
+package com.unravel.api.model.category;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,12 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class WebResponse<T> {
+public class SaveCategoryRequest {
 
-    private T data;
-
-    private String errors;
-
-    private PagingResponse paging;
+    @NotBlank
+    private String name;
 
 }

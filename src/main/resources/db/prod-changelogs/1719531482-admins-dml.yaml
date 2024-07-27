@@ -6,4 +6,4 @@ databaseChangeLog:
         - sqlFile:
             dbms: postgresql
             encoding: utf8
-            path: classpath:db/prod-scripts/business_users-dml.sql
+            path: classpath:db/prod-scripts/admins-dml.sql

@@ -1,0 +1,9 @@
+databaseChangeLog:
+- changeSet:
+    id: 1721988325428-1
+    author: galuhramadhan (generated)
+    changes:
+        - sqlFile:
+              dbms: postgresql
+              encoding: utf8
+              path: classpath:db/scripts/categories-ddl.sql

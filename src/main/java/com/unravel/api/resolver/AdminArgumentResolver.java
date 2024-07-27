@@ -1,7 +1,7 @@
 package com.unravel.api.resolver;
 
-import com.unravel.api.entity.BusinessUser;
-import com.unravel.api.repository.BusinessUserRepository;
+import com.unravel.api.entity.Admin;
+import com.unravel.api.repository.AdminRepository;
 import com.unravel.api.util.TokenUtil;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,17 +16,17 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.server.ResponseStatusException;
 
 @Component
-public class BusinessUserArgumentResolver implements HandlerMethodArgumentResolver {
+public class AdminArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Autowired
     private TokenUtil tokenUtil;
 
     @Autowired
-    private BusinessUserRepository businessUserRepository;
+    private AdminRepository adminRepository;
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return BusinessUser.class.equals(parameter.getParameterType());
+        return Admin.class.equals(parameter.getParameterType());
     }
 
     @Override
@@ -47,6 +47,6 @@ public class BusinessUserArgumentResolver implements HandlerMethodArgumentResolv
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "INVALID_TOKEN");
         }
 
-        return businessUserRepository.findFirstByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, HttpStatus.UNAUTHORIZED.toString()));
+        return adminRepository.findFirstByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, HttpStatus.UNAUTHORIZED.toString()));
     }
 }

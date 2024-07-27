@@ -7,7 +7,7 @@ public class ApiStaticDataTest {
 
     @Test
     void testEquals() {
-        Assertions.assertEquals("/api/business-user", ApiStaticData.API_BUSINESS_USER_PREFIX);
+        Assertions.assertEquals("/api/admin", ApiStaticData.API_ADMIN_PREFIX);
     }
 
 }

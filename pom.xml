@@ -27,7 +27,9 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>21</java.version>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyyMMddHHmmssSSS</maven.build.timestamp.format>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -98,6 +100,17 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>4.27.0</version>
+				<configuration>
+					<url>jdbc:postgresql://localhost:5432/db_unravel_dev</url>
+					<username>postgres</username>
+					<password />
+					<outputChangeLogFile>src/main/resources/db/changelogs/${maven.build.timestamp}-[tablename]-ddl.yaml</outputChangeLogFile>
 				</configuration>
 			</plugin>
 		</plugins>

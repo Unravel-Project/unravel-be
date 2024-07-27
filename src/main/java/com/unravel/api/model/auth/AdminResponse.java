@@ -5,9 +5,11 @@ import lombok.*;
 @Getter
 @AllArgsConstructor
 @Builder
-public class BusinessUserResponse {
+public class AdminResponse {
 
     private Long id;
+
+    private String name;
 
     private String email;
 

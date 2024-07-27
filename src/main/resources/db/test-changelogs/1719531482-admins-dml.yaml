@@ -1,9 +1,9 @@
 databaseChangeLog:
   - changeSet:
-      id: 1719490693
+      id: 1719531482
       author: galuhrmdh@gmail.com
       changes:
         - sqlFile:
             dbms: postgresql
             encoding: utf8
-            path: classpath:db/scripts/business_users-ddl.sql
+            path: classpath:db/test-scripts/admins-dml.sql

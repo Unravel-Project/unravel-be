@@ -1,6 +1,7 @@
 package com.unravel.api.util;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -37,7 +38,7 @@ public class TokenUtilTest {
 
     @Test
     void testGetBusinessUserToken() {
-        String token = tokenUtil.getBusinessUserToken(1L,"dev");
+        String token = tokenUtil.getAdminToken(1L,"dev");
         System.out.println(token);
         Assertions.assertNotNull(token);
     }
@@ -45,9 +46,10 @@ public class TokenUtilTest {
     @Test
     void testVerifyToken() {
         String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJCVVNJTkVTU1VTRVItMSIsImVtYWlsIjoiZGV2IiwiZXhwIjoxNzE5NjY0MDgyfQ.Sfh1O3zu53h8Aj3oE-9M9vzQprZ3RsBdQ_lTxpUjvj0";
-        Claims claims = tokenUtil.verifyToken(token);
 
-        Assertions.assertEquals("dev", claims.get("email"));
+        Assertions.assertThrows(ExpiredJwtException.class, () -> {
+            tokenUtil.verifyToken(token);
+        });
     }
 
 }

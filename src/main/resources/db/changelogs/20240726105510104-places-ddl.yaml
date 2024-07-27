@@ -1,0 +1,9 @@
+databaseChangeLog:
+- changeSet:
+    id: 1721991311829-1
+    author: galuhramadhan (generated)
+    changes:
+        - sqlFile:
+              dbms: postgresql
+              encoding: utf8
+              path: classpath:db/scripts/places-ddl.sql
