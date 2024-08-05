@@ -1,6 +1,7 @@
 [![deploy](https://github.com/Unravel-Project/unravel-be/actions/workflows/cd.yml/badge.svg?branch=main)](https://github.com/Unravel-Project/unravel-be/actions/workflows/cd.yml)
 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-orange.svg)](https://sonarcloud.io/summary/new_code?id=Unravel-Project_unravel-be)
+
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Unravel-Project_unravel-be&metric=bugs)](https://sonarcloud.io/summary/new_code?id=Unravel-Project_unravel-be)
 
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Unravel-Project_unravel-be&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=Unravel-Project_unravel-be)
