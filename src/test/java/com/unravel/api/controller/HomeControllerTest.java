@@ -30,7 +30,7 @@ public class HomeControllerTest {
         ).andExpect(status().isOk()).andDo(result -> {
             WebResponse<String> response = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<>() {
             });
-            Assertions.assertEquals(response.getData(), "REST API Unravel Malang. [TEST] [API-TEST]");
+            Assertions.assertEquals(response.getData(), "permisi om galoh. [TEST] [API-TEST]");
         });
     }
 
