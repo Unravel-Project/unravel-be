@@ -19,6 +19,8 @@ public class HomeController implements HomeApi {
     public WebResponse<String> index() {
         String responseValue = String.format("REST API Unravel Malang. [%s] [%s]", activeProfile.toUpperCase(), name.toUpperCase());
 
+        System.out.println("mbek");
+
         return WebResponse.<String>builder().data(responseValue).build();
     }
 
